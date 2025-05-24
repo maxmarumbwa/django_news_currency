@@ -1,27 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<br><br>
-{% for key,value in price.DISPLAY.items %}
-
-<strong>Name:</strong> {{ key }} <br>
-<strong>Price:</strong> {{ value.USD.PRICE }}<br>
-<strong>Daily high:</strong> {{ value.USD.HIGHDAY }}<br>
-<strong>Daily low:</strong> {{ value.USD.LOWDAY }}<br>
-<strong>MarkertCap low:</strong> {{ value.USD.MTKCAP }}<br>
-
-<br><br>
-{% endfor %}
-
-{{ price.DISPLAY }}
 <br>
+
 
 <div class="jumbotron">
     <h1 class="display-4">Welcome to crypto news network</h1>
     <p class="lead">Your source for crypto and blockchain news.</p>
     <hr class="my-4">
 </div>
+
+<table class="table table-striped-columns table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Daily high</th>
+            <th scope="col">Daily low</th>
+            <th scope="col">MarkertCap</th>
+        </tr>
+    </thead>
+
+    {% for key,value in price.DISPLAY.items %}
+    <tr>
+        <td>{{ key }}</td>
+        <td>{{ value.USD.PRICE }}</td>
+        <td>{{ value.USD.HIGHDAY }}</td>
+        <td>{{ value.USD.LOWDAY }}</td>
+        <td>{{ value.USD.MKTCAP }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
 
 <br><br>
 <div class="container">

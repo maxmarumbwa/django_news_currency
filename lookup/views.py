@@ -23,3 +23,23 @@ def home(request):
 
 def about(request):
     return render(request, "about.html", {})
+
+
+def prices(request):
+    if request.method == "POST":
+        import requests
+        import json
+
+        # get crypto currency
+        quote = request.POST["quote"]
+        quote = quote.upper()
+        crypto_request = requests.get(
+            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms="
+            + quote
+            + "&tsyms=USD"
+        )
+        crypto = json.loads(crypto_request.content)
+        return render(request, "prices.html", {"quote": quote, "crypto": crypto})
+    else:
+        notfound = "Enter a crypto currency symbol in the form above"
+        return render(request, "prices.html", {"notfound": notfound})

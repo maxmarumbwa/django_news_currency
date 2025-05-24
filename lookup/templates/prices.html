@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<br>
+
+{% if notfound %}
+{{ notfound}}
+else
+{% if crypto.Responce}
+Sorry the crypto does not exisit . please try again
+{% endif %}
+
+<h5>{{ notfound }}</h5>
+{% for key,value in crypto.DISPLAY.items %}
+
+<strong>Name</strong>{{ key }} <br>
+<strong>Price</strong>{{ value.USD.PRICE }}<br>
+<strong>Daily high</strong>{{ value.USD.HIGHDAY }}<br>
+<strong>Daily low</strong>{{ value.USD.LOWDAY }}<br>
+<strong>Marketcap</strong>{{ value.USD.MKTCAP }}<br>
+{% endfor %}
+
+{% endblock %}
